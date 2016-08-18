@@ -1,24 +1,23 @@
-# README
+# Odin Flight Booker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Odin Flight Booking is a toy application completed in conjunction with [TheOdinProject](http://theodinproject.com)'s Ruby on Rails [Advanced Forms](http://www.theodinproject.com/ruby-on-rails/building-advanced-forms?ref=lnav) project.
 
-Things you may want to cover:
+## Users are able to:
 
-* Ruby version
+* Search available flights.
 
-* System dependencies
+* Pick a flight.
 
-* Configuration
+* Book a flight for multiple passengers.
 
-* Database creation
+* Enter in details for each passenger.
 
-* Database initialization
+* View their booked flights.
 
-* How to run the test suite
+## The code displays my understanding of:
 
-* Services (job queues, cache servers, search engines, etc.)
+* Advanced forms.
 
-* Deployment instructions
+* Nested forms (`accepts_nested_attributes_for`).
 
-* ...
+* Creating, editing, and deleting objects through `has_many` and `has_many_through` relationships.
