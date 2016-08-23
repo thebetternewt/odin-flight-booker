@@ -2,16 +2,16 @@
   <div class="col-md-8 col-md-offset-2">
     <h1 class="text-center">Choose Your Flight</h1>
 
-    <%= form_tag flights_path, method: 'get', class: 'flight-search-form' do %>
+    <%= form_tag flights_path, method: 'get', id: 'flight-search-form' do %>
       <div class="form-inline">
         <%= label_tag :from_airport, "From: " %>
-        <%= select_tag :from_airport, options_from_collection_for_select(@airports, :id, :code), class: 'form-control' %>
+        <%= select_tag :from_airport, options_from_collection_for_select(@airports, :id, :code, selected: params[:from_airport]), class: 'form-control' %>
         <%= label_tag :to_airport, "To: " %>
-        <%= select_tag :to_airport, options_from_collection_for_select(@airports, :id, :code), class: 'form-control' %>
+        <%= select_tag :to_airport, options_from_collection_for_select(@airports, :id, :code, selected: params[:to_airport]), class: 'form-control' %>
         <%= label_tag :departure_date, "Departs: " %>
-        <%= select_tag :departure_date, options_for_select(Flight.get_departure_dates), class: 'form-control' %>
-        <%= label_tag :passengers, "Number of Passengers:" %>
-        <%= number_field_tag :number_of_passengers, '1', in: 1..10, step: 1, class: 'form-control' %>
+        <%= select_tag :departure_date, options_for_select(Flight.get_departure_dates, selected: params[:departure_date]), class: 'form-control' %>
+        <%= label_tag :number_of_passengers, "Number of Passengers:" %>
+        <%= number_field_tag :number_of_passengers, (params[:number_of_passengers] || 1) , in: 1..10, step: 1, class: 'form-control' %>
         <div>
           <%= submit_tag "Find Flights", class: 'btn btn-success' %>
         </div>
@@ -22,8 +22,15 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <ul class="available-flights">
-      <%= render @search_flights unless @search_flights.nil? %>
+    <ul id="available-flights">
+        <% if @search_flights && !@search_flights.empty? %>
+        <%= form_tag method: 'get' %> <!-- Add link to new_booking_path -->
+          <%= hidden_field_tag :number_of_passengers, params[:number_of_passengers] %>
+          <%= render @search_flights %>
+          <%= submit_tag "Book Flight!", class: 'btn btn-primary' %>
+        <% elsif @search_flights %>
+          <p>No flights found!</p>
+        <% end %>
     </ul>
   </div>
 </div>
