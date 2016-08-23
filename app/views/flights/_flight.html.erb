@@ -1,0 +1,5 @@
+<li>
+  <%= radio_button_tag(:flight, flight.id) %>
+  <%= label_tag("Flight flight_#{flight.id}", "From #{flight.from_airport.code} to #{flight.to_airport.code}, Departs #{flight.departs_at.strftime('%A, %b %d, %Y at %I:%M %p')}, Duration: #{flight.duration_in_hours.to_i} h #{(flight.duration_in_hours % 1 * 60).to_i} min") %>
+
+</li>
