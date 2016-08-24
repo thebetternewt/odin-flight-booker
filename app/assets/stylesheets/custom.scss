@@ -11,8 +11,20 @@ body {
   margin-top: 70px;
 }
 
+h3 {
+  padding-bottom: 10px;
+}
+
+h4 {
+  padding-top: 10px;
+}
+
 #available-flights li {
     list-style: none;
+}
+
+input, label {
+  padding-bottom: 5px;
 }
 
 /* miscellaneous */

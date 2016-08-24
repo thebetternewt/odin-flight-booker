@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Booking Information</h1>
+    <h3>Booking #<%= @booking.id %></h3>
+    <h4>Flight Information:</h4>
+    <p><strong>Flight #:</strong> <%= @booking.flight.id %></p>
+    <p><strong>From:</strong> <%= @booking.flight.from_airport.code %>, <strong>To:</strong> <%= @booking.flight.to_airport.code %></p>
+    <p><strong>Departs at:</strong> <%= @booking.flight.departs_at.strftime("%A %^b %d, %Y at %l:%M %P") %></p>
+    <p><strong>Arrives at:</strong> <%= (@booking.flight.departs_at + (@booking.flight.duration_in_hours).hours).strftime("%A %^b %d, %Y at %l:%M %P") %></p>
+    <p><strong>Duration:</strong> <%= @booking.flight.duration_in_hours.to_i %> hrs, <%= (@booking.flight.duration_in_hours % 1 * 60).to_i %> min</p>
+
+    <hr />
+    <h4>Passengers:</h4>
+    <% @booking.passengers.each do |p| %>
+      <p><strong>Name:</strong> <%= p.name %></p>
+      <p><strong>Email:</strong> <%= p.email %></p>
+    <% end %>
+  </div>
+</div>

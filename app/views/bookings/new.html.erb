@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">New Booking for Flight #<%= params[:flight_id] %></h1>
+    <%= form_for @booking do |b| %>
+      <%= render 'shared/error_messages', object: b.object %>
+      <%= hidden_field_tag :flight_id, params[:flight_id] %>
+        <%= b.fields_for :passengers do |passenger| %>
+            <%= passenger.label :name %>
+            <%= passenger.text_field :name, class: 'form-control' %>
+            <%= passenger.label :email %>
+            <%= passenger.email_field :email, class: 'form-control' %>
+            <hr />
+        <% end %>
+      </ul>
+      <%= b.submit "Book Flight", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
