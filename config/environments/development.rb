@@ -31,6 +31,13 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Use letter_opener gem for development mailer delivery
+  config.action_mailer.delivery_method = :letter_opener
+
+  # Configure host for development
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

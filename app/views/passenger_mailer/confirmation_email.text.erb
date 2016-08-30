@@ -1,0 +1,20 @@
+Flight Booking Confirmation for <%= @passenger.name %>
+=======================================================
+    
+Thank you for using the Odin Flight Booker App! Your flight has been sucessfully booked. See detailed information below:
+    
+
+Booking Information
+===================
+
+Booking #<%= @booking.id %>
+
+Flight Information
+------------------
+Flight #: <%= @booking.flight.id %>
+From: <%= @booking.flight.from_airport.code %>, To: <%= @booking.flight.to_airport.code %>
+Departs at: <%= @booking.flight.departs_at.strftime("%A %^b %d, %Y at %l:%M %P") %>
+Arrives at: <%= (@booking.flight.departs_at + (@booking.flight.duration_in_hours).hours).strftime("%A %^b %d, %Y at %l:%M %P") %>
+Duration: <%= @booking.flight.duration_in_hours.to_i %> hrs, <%= (@booking.flight.duration_in_hours % 1 * 60).to_i %> min
+
+You can view this booking online at <%= booking_url(@booking) %>

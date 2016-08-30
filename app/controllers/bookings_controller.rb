@@ -14,6 +14,9 @@ class BookingsController < ApplicationController
     flight = Flight.find(params[:flight_id])
     @booking = flight.bookings.build(bookings_params)
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.confirmation_email(passenger, @booking).deliver!
+      end
       flash[:success] = "Flight successfully booked!"
       redirect_to booking_path(@booking)
     else
